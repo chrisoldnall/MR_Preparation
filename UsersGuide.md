@@ -1,8 +1,7 @@
 # MR Preparation
 This is a repository that houses all the scripts within the pipeline to prepare data for Mendelian randomisation methods at an individual level. As such there are a mix of bash and python scripts included. These should be viewed and ran in the following order (note: where a number has an 'a' or 'b' this is because there are two parts of the pipeline which can be run simultaeneously.)
 
-- 1a - EntireSNPCreator.py
-- 1b - PEPIDFilter.py
+- 1 - SNP_Exposure_Lists.py
 - 2a - GenotypeFilterForMerge.sh
 - 2b - LDRemoval.sh
 - 3a - ChromMerger.sh
