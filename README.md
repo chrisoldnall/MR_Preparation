@@ -1,5 +1,5 @@
 # MR Preparation
-This is a repository that houses all the scripts within the pipeline to prepare data for Mendelian randomisation methods at an individual level. As such there are a mix of bash and python scripts included. These should be viewed and ran in the following order (note: where a number has an 'a' or 'b' this is because there are two parts of the pipeline which can be run simultaeneously.)
+This is a repository that houses all the scripts within the pipeline to prepare data for Mendelian randomisation methods at an individual level. As such there are a mix of bash and python scripts included. These should be viewed and ran in the following order.
 
 - 1 - SNP_Exposure_Lists.py
 - 2 - LDClumping.sh
@@ -14,12 +14,20 @@ This is a repository that houses all the scripts within the pipeline to prepare 
 - 6 - ChromMerger.sh
 
 - 7 - Genotype.sh
-- 8a - IVWriter.py
-- 8b - OutcomeFilter.py
-- 8c - ExposureFilter.py
+- 8 - IVWriter.py
+
+- Interlude (ii)
+
+  Here I provide some notes about the preparation of exposure and outcomes files.
+  
 - 9 - FinalDFCreator.py
 
-As there is a fair few intracacies to these scripts, this user guide has been created. It is the intention that this will become a fully shelled pipeline soon.
+As there is a fair few intracacies to these scripts, this user guide has been created. It is the intention that this will become a fully shelled pipeline soon. Before commencing, the user should manually look to create the following:
+
+- a parent folder (eg. MRDataFramework)
+- within the parent folder: 'causalFramework', 'SNPListByValid', 'iv_files'
+
+There are some other folders that will be required, however they will be user specified in the scripts below.
 
 ## 1. SNP_Exposure_Lists.py [Run using Python]
 Firstly run this script. It utilises whichever GWAS file you have to extract the exposures and SNPs in the system. This will create, within the same folder, a list of all of the SNPs which are relevant to the system into a file 'AllSigSNPList_PreClumping.txt' as well as a list of all the exposures in 'ExposureIDList.txt'. After these two files it will then create per exposure a list of the SNPs which are associated with it by the GWAS file in the folder in the format 'exposure1.tsv.'
@@ -63,3 +71,9 @@ Run in the terminal via: ``` qsub Genotype.sh ```
 This script takes the BED/BIM/FAM files and translates them in to neat pandas dataframes. It will require the location of the files as created by script (7). It will then return a data file in the causalFramework folder under Z, grouped by number of candidate SNPs - per exposure, which has the sample ID and the triniarised SNP value. 
 
 NOTE: This script requires the library 'pandas_plink'. It shoud be easily installed using ```pip install pandas-plink```. For any issues please visit: https://pypi.org/project/pandas-plink/ [there is no affiliation to this project in my work].
+
+## Interlude (ii)
+Now that the genotype information is preparred, it is necessary to standardise the exposure and outcome. It is however recognised that exposure and outcome files may look different depending on source and prior formatting. Therefore it is expected that the user will pre-format the exposure and outcomes as follows:
+
+- Exposure: one file per exposure, containing two columns 'id' and 'exposure name' containing the sample ids and the name of that exposure. These files should be saved within 'A' folder under causalFramework.
+- Outcome: one file per outcome (system can only handle one outcome at a time), containing 'id' and 'outcome name' where they are the sample ids and the name of that exposure. These files should be saved within the 'Y' folder under causalFramework.
