@@ -10,6 +10,7 @@ os.chdir("INSERT PATHWAY OF .clumped FILES")
 LineCountHold = []
 
 countingList = []
+AllSigSNPList = []
 for file in os.listdir(directory):
     try:
         filename = os.fsdecode(file)
@@ -24,11 +25,16 @@ for file in os.listdir(directory):
             chr = get_numbers_from_filename(chr)
             pos = get_numbers_from_filename(pos)
             SNP_values.append(str(chr)+":"+str(pos))
+            AllSigSNPList.append(str(chr)+":"+str(pos))
         df_ChrPos = pd.DataFrame(SNP_values, columns=['pos']) 
         df_ChrPos.to_csv("SNPListByValid PATHWAY/"+str(count)+"SNP/Exposure"+str(ExposureNumber)+".txt", sep=' ', index=None, header=False)
         countingList.append([ExposureNumber, count])
     except:
         print("Error with exposure "+str(ExposureNumber))
+
+AllSigSNPDF = pd.DataFrame(data = AllSigSNPList)
+AllSigSNPDF_NoRepeats = AllSigSNPDF.drop_duplicates()
+AllSigSNPDF_NoRepeats.to_csv("GENERAL PATHWAY/AllSigSNPList_PostClumping.txt", sep="\t", index=False, header=False)
 
 countingFrame = pd.DataFrame(data=countingList, columns=['Exposure', 'SNPCount'])
 SNPList = countingFrame.SNPCount.unique().tolist()

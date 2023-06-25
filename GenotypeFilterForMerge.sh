@@ -20,5 +20,5 @@ module load igmm/apps/qctool/2.0.8
 CHR=${SGE_TASK_ID}
 BGEN_FILE="BGEN FILE PATHWAY"
 SAMPLE_FILE="SAMPLE FILE PATHWAY, REPLACE CHROMOSOME NUMBER BY ${CHR}"
-RSID_LIST="AllSigSNPList.txt CREATED BY SNP_Exposure_Lists.py"
+RSID_LIST="AllSigSNPList_PostClumping.txt CREATED BY SNPIDReader.py"
 qctool -g ${BGEN_FILE} -assume-chromosome ${CHR} -og "EXPORTPATHWAY/filtered${CHR}.bgen" -incl-positions ${RSID_LIST}

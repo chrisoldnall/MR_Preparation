@@ -36,4 +36,4 @@ def SNP_Exposure_Lists(GWAS_Dataframe_Pathway, Exposure_Identifier, Export_Pathw
     values = [str(a) + b + str(c) for a, b, c in zip(bigFramechr, colons, bigFramepos)]
     output = pd.DataFrame(data = values)
     outputnorepeats = output.drop_duplicates()
-    outputnorepeats.to_csv(Export_Pathway+"/AllSigSNPList.txt", sep="\t", index=False, header=False)
+    outputnorepeats.to_csv(Export_Pathway+"/AllSigSNPList_PreClumping.txt", sep="\t", index=False, header=False)
