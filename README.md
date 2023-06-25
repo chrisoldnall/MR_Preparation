@@ -7,14 +7,16 @@ This is a repository that houses all the scripts within the pipeline to prepare 
 
 - Interlude (i)
 
-  Before proceeding there is some manual work which is required to move only the .clumped files in to their own folder. We additionally need to create a folder set up based on how many SNPs we have per exposure as to save the genotyping information next.
+  Before proceeding there is some manual work which is required to move only the .clumped files in to their own folder.
 
-- 3a - ChromMerger.sh
-- 3b - SNPIDReader.py
-- 4 - Genotype.sh
-- 5a - IVWriter.py
-- 5b - OutcomeFilter.py
-- 5c - ExposureFilter.py
+- 3 - SNPListCreator.py
+- 4a - ChromMerger.sh
+- 4b - SNPIDReader.py
+- 5 - Genotype.sh
+- 6a - IVWriter.py
+- 6b - OutcomeFilter.py
+- 6c - ExposureFilter.py
+- 7 - FinalDFCreator.py
 
 As there is a fair few intracacies to these scripts, this user guide has been created. It is the intention that this will become a fully shelled pipeline soon.
 
@@ -37,12 +39,13 @@ Following running script 2b, it is necessary to move the .clumped files in to th
 ```
 find "OUTPUT_LOCATION_OF_2B" -name "*.clumped" -exec cp -vuni '{}' "OUTPUT_LOCATION_FOR_CLUMPED_FILED" ";"
 ```
-After this we need to create the folders to save the genotyping information in, in a couple of steps. Therefore we search through all the '.clumped' files and work out the maximum number of candidate SNPs we have. 
-```
-find /exports/igmm/eddie/GenScot-PBMC-proteomics-GWAS/coldnall/testFolder -type f -print0 | xargs -0 wc -l | sort -n
-```
 
-## 3a. ChromMerger.sh [Run using Terminal]
+## 3. SNPListCreator.py [Run using Python]
+We need to create the folders to save the genotyping information in, this is useful for a few future steps. Therefore we search through all the '.clumped' files and work out the maximum number of candidate SNPs we have. This is all done through this script, where you must feed in locations for the 'CausalFramework' to go as well as the 'iv_files' (this is where the hardcalled genotype data will go), and 'SNPListByValid'. This final location is where per exposure we will store the post-clumping SNP lists per exposure grouped by how many candidate SNPs remain. Subsequently in each of these locations, folders of the format '1SNP, 2SNP, ..., NSNP' are created for future usage - noting in the causal framework case an inner 'Z' folder is also created.
+
+Finally at the end of the script, there is also a text file created which stores the created folder names ('1SNP, 2SNP, ..., NSNP') in it to allow for processing in later scripts and when running methodology.
+
+## 4a. ChromMerger.sh [Run using Terminal]
 Next we merge the BGEN files that came from the script in 2a. This is because we have filtered each individual chromosome to only now contain the genotyping information for the SNPs that we know are associated with the system that we are working in. For this we have to merge each of the chromosomes. It starts with doing chr 1 and 2 individually, then loops around the rest of the chromosomes. Eventually in the folder you will have a file 'merged1_22.bgen.'
 
 Run in the terminal via: ``` qsub ChromMerger.sh ```
