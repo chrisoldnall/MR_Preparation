@@ -1,5 +1,6 @@
 #$ -o INSERT OUTCOME LOG PATHWAY
 #$ -e INSERT ERROR LOG PATHWAY
+#$ -N INSERT NAME OF JOB
 #!/bin/sh
 # Set: Current Working Directory.
 #$ -cwd

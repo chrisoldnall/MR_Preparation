@@ -14,7 +14,7 @@
 set -o pipefail
 # Initialise: Environment Modules
 . /etc/profile.d/modules.sh
-# Load modules and environments
+# Load: Modules and Environments
 module load igmm/apps/qctool/2.0.8
 
 CHR=${SGE_TASK_ID}
