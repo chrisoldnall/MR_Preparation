@@ -58,3 +58,8 @@ Run in the terminal via: ``` qsub ChromMerger.sh ```
 Here we now obtain the genotype information for the SNPs and individuals that we have in the study. This script will take in or utilise a culmination of the outputs of scripts (1)-(6). It will then return in the 'iv_files' folder, grouped by number of valid SNPs, per expsoure the BED/BIM/FAM file. This is the hardcalled genotyping information.
 
 Run in the terminal via: ``` qsub Genotype.sh ```
+
+## 8a. IVWriter.py [Run using Python]
+This script takes the BED/BIM/FAM files and translates them in to neat pandas dataframes. It will require the location of the files as created by script (7). It will then return a data file in the causalFramework folder under Z, grouped by number of candidate SNPs - per exposure, which has the sample ID and the triniarised SNP value. 
+
+NOTE: This script requires the library 'pandas_plink'. It shoud be easily installed using ```pip install pandas-plink```. For any issues please visit: https://pypi.org/project/pandas-plink/ [there is no affiliation to this project in my work].
