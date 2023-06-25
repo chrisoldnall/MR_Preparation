@@ -7,7 +7,7 @@ This is a repository that houses all the scripts within the pipeline to prepare 
 
 - Interlude (i)
 
-  Before proceeding there is some manual work which is required to move only the .clumped files in to their own folder.
+  Before proceeding there is some manual work which is required to move only the .clumped files in to their own folder. We additionally need to create a folder set up based on how many SNPs we have per exposure as to save the genotyping information next.
 
 - 3a - ChromMerger.sh
 - 3b - SNPIDReader.py
@@ -37,6 +37,11 @@ Following running script 2b, it is necessary to move the .clumped files in to th
 ```
 find "OUTPUT_LOCATION_OF_2B" -name "*.clumped" -exec cp -vuni '{}' "OUTPUT_LOCATION_FOR_CLUMPED_FILED" ";"
 ```
+After this we need to create the folders to save the genotyping information in, in a couple of steps. Therefore we search through all the '.clumped' files and work out the maximum number of candidate SNPs we have. 
+```
+find /exports/igmm/eddie/GenScot-PBMC-proteomics-GWAS/coldnall/testFolder -type f -print0 | xargs -0 wc -l | sort -n
+```
+
 ## 3a. ChromMerger.sh [Run using Terminal]
 Next we merge the BGEN files that came from the script in 2a. This is because we have filtered each individual chromosome to only now contain the genotyping information for the SNPs that we know are associated with the system that we are working in. For this we have to merge each of the chromosomes. It starts with doing chr 1 and 2 individually, then loops around the rest of the chromosomes. Eventually in the folder you will have a file 'merged1_22.bgen.'
 
