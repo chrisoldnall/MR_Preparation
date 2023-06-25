@@ -14,10 +14,18 @@ for r,d,f in os.walk(path):
             if i>=temp: temp=i; final = os.path.join(r,files)
 
 max_SNPs = temp-3
+
 causalFrameworkPathway = "PATHWAY FOR CAUSAL FRAMEWORK TO BE STORED"
 SNPDenotion = "Z"
+ExpsoureDenotion = "A"
+OutcomeDenotion = "Y"
 causalPathway = os.path.join(causalFrameworkPathway, SNPDenotion)
 os.mkdir(causalPathway)
+exposurePathway = os.path.join(causalFrameworkPathway, ExpsoureDenotion)
+os.mkdir(exposurePathway)
+outcomePathway = os.path.join(causalFrameworkPathway, OutcomeDenotion)
+os.mkdir(outcomePathway)
+
 iv_filesPathway = "PATHWAY FOR GENOTYPED BED/BIM/FAM FILES TO BE STORED"
 SNPListByValidPathway = "PATHWAY FOR STORAGE OF SNP LISTS PER EXPOSIRE"
 
