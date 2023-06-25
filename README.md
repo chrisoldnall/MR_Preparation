@@ -13,11 +13,11 @@ This is a repository that houses all the scripts within the pipeline to prepare 
 - 5 - GenotypeFilterForMerge.sh
 - 6 - ChromMerger.sh
 
-- 5 - Genotype.sh
-- 6a - IVWriter.py
-- 6b - OutcomeFilter.py
-- 6c - ExposureFilter.py
-- 7 - FinalDFCreator.py
+- 7 - Genotype.sh
+- 8a - IVWriter.py
+- 8b - OutcomeFilter.py
+- 8c - ExposureFilter.py
+- 9 - FinalDFCreator.py
 
 As there is a fair few intracacies to these scripts, this user guide has been created. It is the intention that this will become a fully shelled pipeline soon.
 
@@ -53,3 +53,8 @@ Run in the terminal via: ``` qsub GenotypeFilterForMerge.sh -t 1-22 ```
 Next we merge the BGEN files that came from the script in 5. This is because we have filtered each individual chromosome to only now contain the genotyping information for the SNPs that we know are associated with the system that we are working in. For this we have to merge each of the chromosomes. It starts with doing chr 1 and 2 individually, then loops around the rest of the chromosomes. Eventually in the folder you will have a file 'merged1_22.bgen.'
 
 Run in the terminal via: ``` qsub ChromMerger.sh ```
+
+## 7. Genotype.sh [Run using Terminal]
+Here we now obtain the genotype information for the SNPs and individuals that we have in the study. This script will take in or utilise a culmination of the outputs of scripts (1)-(6). It will then return in the 'iv_files' folder, grouped by number of valid SNPs, per expsoure the BED/BIM/FAM file. This is the hardcalled genotyping information.
+
+Run in the terminal via: ``` qsub Genotype.sh ```
