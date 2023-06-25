@@ -49,3 +49,6 @@ Finally at the end of the script, there is also a text file created which stores
 Next we merge the BGEN files that came from the script in 2a. This is because we have filtered each individual chromosome to only now contain the genotyping information for the SNPs that we know are associated with the system that we are working in. For this we have to merge each of the chromosomes. It starts with doing chr 1 and 2 individually, then loops around the rest of the chromosomes. Eventually in the folder you will have a file 'merged1_22.bgen.'
 
 Run in the terminal via: ``` qsub ChromMerger.sh ```
+
+## 4b. SNPIDReader.py [Run using Python]
+Whilst the ChromMerger script is running you can now move on to doing the final preperation of the candidate SNP lists. In this step we take the LD clumped SNPs and put them in to lists, per exposure grouped by the number of candidate SNPs there now is. This will allow us split up (and speed up) the hard calling of the genotyping in the next script. There are a couple of options in this script, namely locating where the '.clumped' files are and also the location of the 'SNPListByValid' folder for exporting.
