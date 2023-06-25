@@ -23,6 +23,6 @@ do
         BGEN_FILE="PATHWAY TO MERGED BGEN FILE FROM ChromMerger.sh/merged1_22.bgen"
         SAMPLE_FILE="SAMPLE FILE FROM COHORT (CAN BE ANY CHROMOSOME)"
         RSID_LIST="INSERT PATHWAY TO SNPListByValid/${SNP}/${EXP}.txt"
-        qctool -g ${BGEN_FILE} -s ${SAMPLE_FILE} -og "INSERT PATHWAY TO iv_files/${SNP}/${PEP}.bed" -incl-positions ${RSID_LIST}
+        qctool -g ${BGEN_FILE} -s ${SAMPLE_FILE} -og "INSERT PATHWAY TO iv_files/${SNP}/${EXP}.bed" -incl-positions ${RSID_LIST}
     done
 done
