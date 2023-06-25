@@ -24,4 +24,5 @@ Run in the terminal via: 'qsub GenotypeFilterForMerge.sh -t 1-22'
 ## 2b. LDClumping.sh [Run using Terminal]
 In parallel with 2a, we may also run the LD clumping procedure for each of the exposures. This script takes in the individual SNP per exposure files that were created in 1. and forms LD clump blocks in order to ensure what SNPs we retain for the MR process are not in LD with each other. There will be a range of files returned, most importantly the '.clumped' files.
 - WARNING: This script requires the cohort files to be in BED/BIM/FAM format. If you only have BGEN files then you will need to convert to BED/BIM/FAM. There is a variety of scripts/advices to do so online. It is hope to add in a script here in future.
+
 Run in the terminal via: 'qsub LDClumping.sh'
