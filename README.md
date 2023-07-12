@@ -67,7 +67,7 @@ Here we now obtain the genotype information for the SNPs and individuals that we
 
 Run in the terminal via: ``` qsub Genotype.sh ```
 
-## 8a. IVWriter.py [Run using Python]
+## 8. IVWriter.py [Run using Python]
 This script takes the BED/BIM/FAM files and translates them in to neat pandas dataframes. It will require the location of the files as created by script (7). It will then return a data file in the causalFramework folder under Z, grouped by number of candidate SNPs - per exposure, which has the sample ID and the triniarised SNP value. 
 
 NOTE: This script requires the library 'pandas_plink'. It shoud be easily installed using ```pip install pandas-plink```. For any issues please visit: https://pypi.org/project/pandas-plink/ [there is no affiliation to this project in my work].
@@ -77,3 +77,6 @@ Now that the genotype information is preparred, it is necessary to standardise t
 
 - Exposure: one file per exposure, containing two columns 'id' and 'exposure name' containing the sample ids and the name of that exposure. These files should be saved within 'A' folder under causalFramework.
 - Outcome: one file per outcome (system can only handle one outcome at a time), containing 'id' and 'outcome name' where they are the sample ids and the name of that exposure. These files should be saved within the 'Y' folder under causalFramework.
+
+## 9. FinalDFCreator.py [Run using Python]
+This is the final script in the pipeline. Guidance is yet to be added here for this final step.
