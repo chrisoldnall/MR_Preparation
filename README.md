@@ -8,7 +8,7 @@ This is a repository that houses all the scripts within the pipeline to prepare 
 
   Before proceeding there is some manual work which is required to move only the .clumped files in to their own folder.
 
-- 3 - SNPListCreator.py
+- 3 - SNPFolderCreator.py
 - 4 - SNPIDReader.py
 - 5 - GenotypeFilterForMerge.sh
 - 6 - ChromMerger.sh
