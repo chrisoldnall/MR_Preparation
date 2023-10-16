@@ -55,7 +55,7 @@ In this step we take the LD clumped SNPs and put them in to lists, per exposure 
 ## 5. GenotypeFilterForMerge.sh [Run using Terminal]
 Next we have a bash script which will take the BGEN and SAMPLE files from the cohort which we have (these contain the full genomic data for the individuals in our sample and their IDs) and reduce them per chromosome using the full list of SNPs that are relevant to the system in which we are working (determined by the 'AllSigSNPList_PostClumping.txt' file from 4.) - If you do not have the BGEN files per chromosome this will need some amending, otherwise the command below assumes all 22 chromosomes are being used. In this script you need to amend locations manually. 
 
-Run in the terminal via: ``` qsub GenotypeFilterForMerge.sh -t 1-22 ```
+Run in the terminal via: ``` qsub -t 1-22 GenotypeFilterForMerge.sh```
 
 ## 6. ChromMerger.sh [Run using Terminal]
 Next we merge the BGEN files that came from the script in 5. This is because we have filtered each individual chromosome to only now contain the genotyping information for the SNPs that we know are associated with the system that we are working in. For this we have to merge each of the chromosomes. It starts with doing chr 1 and 2 individually, then loops around the rest of the chromosomes. Eventually in the folder you will have a file 'merged1_22.bgen.'
